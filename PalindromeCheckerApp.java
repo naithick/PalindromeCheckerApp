@@ -1,27 +1,31 @@
-import java.util.*;
-
 public class PalindromeCheckerApp {
-
 
     public static void main(String[] args) {
         
-        String input = "level";
-        boolean isPalindrome = check(input, 0, input.length() - 1);
+        String original = "A man a plan a canal Panama";
+        String normalized = original.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        
+   
+        boolean isPalindrome = isPalindromeRecursive(normalized);
 
 
-
-        System.out.println("Input text: " + input);
-        System.out.println("Is palindrome: " + isPalindrome);
+        System.out.println("Input String  : " + original);
+        System.out.println("Normalized    : " + normalized);
+        System.out.println("Is Palindrome?: " + isPalindrome);
     }
-    private static boolean check(String s, int start, int end){
-        if(start >= end){
+
+ 
+    public static boolean isPalindromeRecursive(String str) {
+       
+        if (str.length() <= 1) {
             return true;
         }
-        if(s.charAt(start) != s.charAt(end)){
+
+        if (str.charAt(0) != str.charAt(str.length() - 1)) {
             return false;
         }
-        return check(s, start + 1, end - 1);
+
+
+        return isPalindromeRecursive(str.substring(1, str.length() - 1));
     }
 }
-
-
