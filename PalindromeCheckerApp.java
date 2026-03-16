@@ -1,31 +1,37 @@
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        
-        String original = "A man a plan a canal Panama";
-        String normalized = original.replaceAll("[^a-zA-Z]", "").toLowerCase();
-        
-   
-        boolean isPalindrome = isPalindromeRecursive(normalized);
 
+        String input = "radar";
 
-        System.out.println("Input String  : " + original);
-        System.out.println("Normalized    : " + normalized);
-        System.out.println("Is Palindrome?: " + isPalindrome);
+        PalindromeService service = new PalindromeService();
+
+  
+        boolean isPalindrome = service.checkPalindrome(input);
+
+      
+        System.out.println("Input String: " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
+}
 
- 
-    public static boolean isPalindromeRecursive(String str) {
+
+class PalindromeService {
+
+    public boolean checkPalindrome(String input) {
        
-        if (str.length() <= 1) {
-            return true;
+        int start = 0;
+        int end = input.length() - 1;
+
+       
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false; 
+            }
+            start++; 
+            end--;   
         }
 
-        if (str.charAt(0) != str.charAt(str.length() - 1)) {
-            return false;
-        }
-
-
-        return isPalindromeRecursive(str.substring(1, str.length() - 1));
+        return true; 
     }
 }
